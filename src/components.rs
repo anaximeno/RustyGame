@@ -1,7 +1,7 @@
 pub use crate::point::*;
 pub use crate::player::*;
+pub use crate::ball::*;
 
-pub struct Ball;
 pub struct Ground;
 pub struct Net;
 pub struct Placar;

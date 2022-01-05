@@ -1,5 +1,6 @@
 mod point;
 mod player;
+mod ball;
 mod components;
 
 use components::*;
