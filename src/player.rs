@@ -1,5 +1,5 @@
-use raylib::misc::AsF32;
 use raylib::prelude::*;
+use raylib::misc::AsF32;
 use crate::point::Point;
 
 
@@ -28,7 +28,14 @@ impl Point for Player {
 
 
 impl Player {
-    pub fn from<T: AsF32, U: AsF32>(color: Color, side: Side, w: T, h: T, x: U, y: U) -> Player {
+    pub fn from<T: AsF32, U: AsF32>(
+        color: Color,
+        side: Side,
+        w: T,
+        h: T,
+        x: U,
+        y: U
+    ) -> Player {
         Player {
             rect: rrect(x, y, w, h),
             color: color,
