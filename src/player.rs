@@ -41,5 +41,3 @@ impl Player {
         }
     }
 }
-
-//  on Player and added new function create_player
