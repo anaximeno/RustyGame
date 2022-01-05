@@ -1,6 +1,6 @@
 pub use crate::point::*;
+pub use crate::player::*;
 
-pub struct Player;
 pub struct Ball;
 pub struct Ground;
 pub struct Net;

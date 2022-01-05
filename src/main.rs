@@ -1,4 +1,5 @@
 mod point;
+mod player;
 mod components;
 use components::Point;
 
