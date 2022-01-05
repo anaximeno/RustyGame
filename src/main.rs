@@ -1,3 +1,4 @@
+mod point;
 mod components;
 use components::Point;
 
