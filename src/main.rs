@@ -24,9 +24,8 @@ fn run_test_window(rl: &mut RaylibHandle, th: &RaylibThread) {
     let (w, h) = (WINDOW_WIDTH as f32, WINDOW_HEIGHT as f32);
     let mut player1 = Player::from(Color::BLUE, Side::LEFT, 32, 60);
     let mut player2 = Player::from(Color::RED, Side::RIGHT, 32, 60);
-
     let mut ball = Ball::from(Color::GOLD, 15, 15);
-    let camera = GameCamera::from(rvec2(0, 0), rvec2(0, 0));
+    let mut camera = GameCamera::from(rvec2(0, 0), rvec2(0, 0));
     let net = Net::from(Color::RAYWHITE, 4, 100, w / 2.0, h - 100.0);
 
     player1.move_to(0, h - player1.height);
@@ -35,6 +34,7 @@ fn run_test_window(rl: &mut RaylibHandle, th: &RaylibThread) {
     ball.walk(50, 0);
 
     while !rl.window_should_close() {
+        handle_keyboard_input(&rl, &mut player1, &mut camera);
         let mut dw = rl.begin_drawing(&th);
         dw.clear_background(Color::DARKGRAY);
         {
@@ -44,5 +44,23 @@ fn run_test_window(rl: &mut RaylibHandle, th: &RaylibThread) {
             cw.draw_rectangle_rec(&net.rect, net.color);
             cw.draw_rectangle_rec(&ball.rect, ball.color);
         }
+    }
+}
+
+
+fn handle_keyboard_input(rl: &RaylibHandle, player: &mut Player, camera: &mut GameCamera) {
+    use raylib::consts::KeyboardKey::*;
+    const SPEED: f32 = 2.0;
+    const CAM_OFF_SPEED: f32 = SPEED / 2.0;
+    // TODO: check/improve camera traits
+    if rl.is_key_down(KEY_LEFT) {
+        player.walk(-SPEED, 0);
+        let new_offset = camera.cam.offset.x+CAM_OFF_SPEED;
+        camera.change_offset_to(new_offset, 0);
+    }
+    if rl.is_key_down(KEY_RIGHT) {
+        player.walk(SPEED, 0);
+        let new_offset = camera.cam.offset.x-CAM_OFF_SPEED;
+        camera.change_offset_to(new_offset, 0);
     }
 }
