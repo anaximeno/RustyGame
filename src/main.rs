@@ -24,9 +24,12 @@ fn run_test_window(rl: &mut RaylibHandle, th: &RaylibThread) {
     let (w, h) = (WINDOW_WIDTH, WINDOW_HEIGHT);
     let player1 = Player::from(Color::BLUE, Side::LEFT, 32, 60, 0, h - 42);
     let player2 = Player::from(Color::RED, Side::RIGHT, 32, 60, w - 32, h - 42);
-    let ball = Ball::from(Color::GOLD, 15, 15, w / 2, h / 2);
+    let mut ball = Ball::from(Color::GOLD, 15, 15, w / 2, h / 2);
     let net = Net::from(Color::RAYWHITE, 4, 100, w / 2, h - 100);
     let camera = GameCamera::from(rvec2(0, 0), rvec2(0, 0));
+
+    ball.move_to_point(&net);
+    
     while !rl.window_should_close() {
         let mut dw = rl.begin_drawing(&th);
         dw.clear_background(Color::DARKGRAY);
