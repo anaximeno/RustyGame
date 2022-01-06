@@ -29,7 +29,7 @@ fn run_test_window(rl: &mut RaylibHandle, th: &RaylibThread) {
     let net = Net::from(Color::RAYWHITE, 4, 100, w / 2.0, h - 100.0);
 
     player1.move_to(0, h - player1.height);
-    player1.set_speed_to(1.5, 1.5);
+    player1.set_speed_to(2, 2);
     player2.move_to(w - player2.width, h - player2.height);
     ball.move_to(w / 2.0, h / 2.0);
     ball.walk(50, 0);
