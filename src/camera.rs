@@ -2,7 +2,7 @@ use raylib::misc::AsF32;
 use raylib::prelude::*;
 
 
-pub struct GameCamera<'a> {
+pub struct GameCamera {
     pub cam: Camera2D,
     default_zoom: f32,
     default_rotation: f32,
