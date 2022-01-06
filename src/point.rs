@@ -37,4 +37,13 @@ pub trait MovablePoint {
     fn move_to_point<T: Point>(&mut self, point: &T) {
         self.move_to(point.x(), point.y())
     }
+
+    /*
+     * @summary: instead of moving to a point, it adds the
+     * point x and y values to the given parameters x and y.
+    */
+    fn walk<T1: AsF32, T2: AsF32>(&mut self, x: T1, y: T2) {
+        *self.x_ref() += x.as_f32();
+        *self.y_ref() += y.as_f32();
+    }
 }
