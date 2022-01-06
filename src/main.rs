@@ -32,6 +32,7 @@ fn run_test_window(rl: &mut RaylibHandle, th: &RaylibThread) {
     player1.move_to(0, h - player1.height);
     player2.move_to(w - player2.width, h - player2.height);
     ball.move_to(w / 2.0, h / 2.0);
+    ball.walk(50, 0);
 
     while !rl.window_should_close() {
         let mut dw = rl.begin_drawing(&th);
