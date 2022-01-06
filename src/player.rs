@@ -1,6 +1,6 @@
 use raylib::prelude::*;
 use raylib::misc::AsF32;
-use crate::point::Point;
+use crate::point::*;
 
 
 pub enum Side {
@@ -24,6 +24,12 @@ pub struct Player {
 impl Point for Player {
     fn x(&self) -> f32 { self.rect.x }
     fn y(&self) -> f32 { self.rect.y }
+}
+
+
+impl MovablePoint for Player {
+    fn x_ref(&mut self) -> &mut f32 { &mut self.rect.x }
+    fn y_ref(&mut self) -> &mut f32 { &mut self.rect.y }
 }
 
 

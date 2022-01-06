@@ -1,7 +1,7 @@
 use raylib::prelude::*;
 use raylib::misc::AsF32;
-use crate::point::Point;
 use crate::player::Player;
+use crate::point::*;
 
 
 pub struct Ball {
@@ -19,6 +19,12 @@ pub struct Ball {
 impl Point for Ball {
     fn x(&self) -> f32 { self.rect.x }
     fn y(&self) -> f32 { self.rect.y }
+}
+
+
+impl MovablePoint for Ball {
+    fn x_ref(&mut self) -> &mut f32 { &mut self.rect.x }
+    fn y_ref(&mut self) -> &mut f32 { &mut self.rect.y }
 }
 
 
