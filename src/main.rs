@@ -51,25 +51,24 @@ fn run_test_window(rl: &mut RaylibHandle, th: &RaylibThread) {
 
 fn handle_keyboard_input(rl: &RaylibHandle, player: &mut Player, camera: &mut GameCamera) {
     use raylib::consts::KeyboardKey::*;
-    let (sx, sy) = (player.speed.x, player.speed.y);
     
     if rl.is_key_down(KEY_LEFT) {
-        player.walk(-sx, 0);
-        camera.increase_offset_by(sx / 2.0, 0);
+        player.walk(-player.speed.x, 0);
+        camera.increase_offset_by(player.speed.x / 2.0, 0);
     }
 
     if rl.is_key_down(KEY_RIGHT) {
-        player.walk(sx, 0);
-        camera.increase_offset_by(-sx / 2.0, 0);
+        player.walk(player.speed.x, 0);
+        camera.increase_offset_by(-player.speed.x / 2.0, 0);
     }
 
     if rl.is_key_down(KEY_UP) {
-        player.walk(0, -sy);
-        camera.increase_offset_by(0, sy / 2.0);
+        player.walk(0, -player.speed.x);
+        camera.increase_offset_by(0, player.speed.x / 2.0);
     }
 
     if rl.is_key_down(KEY_DOWN) {
-        player.walk(0, sy);
-        camera.increase_offset_by(0, -sy / 2.0);
+        player.walk(0, player.speed.x);
+        camera.increase_offset_by(0, -player.speed.x / 2.0);
     }
 }
