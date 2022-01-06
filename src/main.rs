@@ -2,7 +2,7 @@ mod point;
 mod player;
 mod ball;
 mod components;
-use camera;
+mod camera;
 
 use components::*;
 use raylib::prelude::*;
@@ -26,4 +26,10 @@ fn main() {
         "\nThere is a ball at the distance of {} from the Player 1!",
         b.dist_from_point(&p1)
     );
+
+    let mut camera = GameCamera::from(rvec2(0, 0), rvec2(200, 345));
+    camera.rotate_to(b.theta());
+    println!("\nThe camera rotation is = {}", camera.cam.rotation);
+    camera.restore_rotation();
+    println!("After restore the camera rotation is = {}", camera.cam.rotation);
 }
