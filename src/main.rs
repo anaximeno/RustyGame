@@ -25,7 +25,7 @@ fn run_test_window(rl: &mut RaylibHandle, th: &RaylibThread) {
     let mut player1 = Player::from(Color::BLUE, Side::LEFT, 32, 60);
     let mut player2 = Player::from(Color::RED, Side::RIGHT, 32, 60);
     let mut ball = Ball::from(Color::GOLD, 15, 15);
-    let mut camera = GameCamera::from(rvec2(0, 0), rvec2(0, 0));
+    let mut camera = GameCamera::new();
     let net = Net::from(Color::RAYWHITE, 4, 100, w / 2.0, h - 100.0);
 
     player1.move_to(0, h - player1.height);
