@@ -8,39 +8,34 @@ mod net;
 use components::*;
 use raylib::prelude::*;
 
+const WINDOW_WIDTH: i32 = 720;
+const WINDOW_HEIGHT: i32 = 640;
+
 
 fn main() {
-    let p1 = Player::from(Color::BLUE, Side::LEFT, 32, 60, 200, 200);
+    let (mut rl, th) = raylib::init().size(WINDOW_WIDTH, WINDOW_HEIGHT)
+                        .title("Rusty Volley").build();
+    rl.set_target_fps(60);
+    run_test_window(&mut rl, &th);
+}
 
-    println!(
-        "Player 1 says hello from {} pixels of distance from the origin!",
-        p1.dist()
-    );
 
-    println!(
-        "p1's height = {}, width = {} and, aceleration = {}",
-        p1.height, p1.width, p1.aceleration
-    );
-
-    let b = Ball::from(Color::BEIGE, 15, 15, 369, -125);
-
-    println!(
-        "\nThere is a ball at the distance of {} pixels from the Player 1!",
-        b.dist_from_point(&p1)
-    );
-
-    let mut camera = GameCamera::from(rvec2(0, 0), rvec2(200, 345));
-
-    camera.rotate_to(b.theta());
-    println!("\nCamera rotation = {}", camera.cam.rotation);
-
-    camera.restore_rotation();
-    println!("After restore, camera rotation = {}", camera.cam.rotation);
-
-    let net = Net::from(Color::RAYWHITE, 5, 80, 250, 250);
-
-    println!(
-        "\nNet is on ({}, {}) at {} pixels of distance from Player1!",
-        net.x(), net.y(), net.dist_from_point(&p1)
-    );
+fn run_test_window(rl: &mut RaylibHandle, th: &RaylibThread) {
+    let (w, h) = (WINDOW_WIDTH, WINDOW_HEIGHT);
+    let player1 = Player::from(Color::BLUE, Side::LEFT, 32, 60, 0, h - 42);
+    let player2 = Player::from(Color::RED, Side::RIGHT, 32, 60, w - 32, h - 42);
+    let ball = Ball::from(Color::GOLD, 15, 15, w / 2, h / 2);
+    let net = Net::from(Color::RAYWHITE, 4, 100, w / 2, h - 100);
+    let camera = GameCamera::from(rvec2(0, 0), rvec2(0, 0));
+    while !rl.window_should_close() {
+        let mut dw = rl.begin_drawing(&th);
+        dw.clear_background(Color::DARKGRAY);
+        {
+            let mut cw = dw.begin_mode2D(camera.cam);
+            cw.draw_rectangle_rec(&player1.rect, player1.color);
+            cw.draw_rectangle_rec(&player2.rect, player2.color);
+            cw.draw_rectangle_rec(&net.rect, net.color);
+            cw.draw_rectangle_rec(&ball.rect, ball.color);
+        }
+    }
 }
