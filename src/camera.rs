@@ -10,15 +10,15 @@ pub struct GameCamera {
 
 
 impl GameCamera {
-    pub fn from(target: Vector2, offset: Vector2) -> Self {
+    pub fn new() -> Self {
         let default_rotation: f32 = 0.0;
         let default_zoom: f32 = 1.0;
         GameCamera {
             default_rotation,
             default_zoom,
             cam: Camera2D{
-                target: target,
-                offset: offset,
+                target: rvec2(0, 0),
+                offset: rvec2(0, 0),
                 rotation: default_rotation,
                 zoom: default_zoom,
             },
@@ -47,5 +47,10 @@ impl GameCamera {
 
     pub fn restore_rotation(&mut self) {
         self.cam.rotation = self.default_rotation;
+    }
+
+    pub fn increase_offset_by<T1: AsF32, T2: AsF32>(&mut self, x: T1, y: T2) {
+        let (ox, oy) = (self.cam.offset.x, self.cam.offset.y);
+        self.change_offset_to(ox + x.as_f32(), oy + y.as_f32());
     }
 }
