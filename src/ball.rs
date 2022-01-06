@@ -1,6 +1,7 @@
 use raylib::prelude::*;
 use raylib::misc::AsF32;
 use crate::point::Point;
+use crate::player::Player;
 
 
 pub struct Ball {
@@ -11,6 +12,7 @@ pub struct Ball {
     pub collider: Vector3, 
     pub speed: Vector2,
     pub aceleration: f32,
+    pub last_touched_player: Option<Player>,
 }
 
 
@@ -35,7 +37,8 @@ impl Ball {
             height: h.as_f32(),
             collider: rvec3(0, 0, 0),
             speed: rvec2(0, 0),
-            aceleration: 0.0
+            aceleration: 0.0,
+            last_touched_player: None,
         }
     }
 }
