@@ -10,7 +10,7 @@ pub struct GameCamera {
 
 
 impl GameCamera {
-    pub fn from(target: Vector2, offset: Vector2) -> GameCamera {
+    pub fn from(target: Vector2, offset: Vector2) -> Self {
         let default_rotation: f32 = 0.0;
         let default_zoom: f32 = 1.0;
         GameCamera {
@@ -33,11 +33,11 @@ impl GameCamera {
         self.cam.zoom = z.as_f32();
     }
 
-    pub fn target_at<T: AsF32, U: AsF32>(&mut self, x: T, y: U) {
+    pub fn target_at<T1: AsF32, T2: AsF32>(&mut self, x: T1, y: T2) {
         self.cam.target = rvec2(x, y);
     }
 
-    pub fn change_offset_to<T: AsF32, U: AsF32>(&mut self, x: T, y: U) {
+    pub fn change_offset_to<T1: AsF32, T2: AsF32>(&mut self, x: T1, y: T2) {
         self.cam.offset = rvec2(x, y);
     }
 

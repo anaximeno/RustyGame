@@ -23,18 +23,18 @@ impl Point for Ball {
 
 
 impl Ball {
-    pub fn from<T: AsF32, U: AsF32>(
+    pub fn from<T1: AsF32, U2: AsF32>(
         color: Color,
-        w: T,
-        h: T,
-        x: U,
-        y: U
-    ) -> Ball {
+        width: T1,
+        height: T1,
+        x: U2,
+        y: U2
+    ) -> Self {
         Ball {
-            rect: rrect(x, y, w, h),
+            rect: rrect(x, y, width, height),
             color: color,
-            width: w.as_f32(),
-            height: h.as_f32(),
+            width: width.as_f32(),
+            height: height.as_f32(),
             collider: rvec3(0, 0, 0),
             speed: rvec2(0, 0),
             aceleration: 0.0,

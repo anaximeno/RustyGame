@@ -28,20 +28,20 @@ impl Point for Player {
 
 
 impl Player {
-    pub fn from<T: AsF32, U: AsF32>(
+    pub fn from<T1: AsF32, T2: AsF32>(
         color: Color,
         side: Side,
-        w: T,
-        h: T,
-        x: U,
-        y: U
-    ) -> Player {
+        width: T1,
+        height: T1,
+        x: T2,
+        y: T2
+    ) -> Self {
         Player {
-            rect: rrect(x, y, w, h),
+            rect: rrect(x, y, width, height),
             color: color,
             side: side,
-            width: w.as_f32(),
-            height: h.as_f32(),
+            width: width.as_f32(),
+            height: height.as_f32(),
             collider: rvec3(0, 0, 0),
             speed: rvec2(0, 0),
             aceleration: 0.0
