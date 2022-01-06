@@ -11,7 +11,7 @@ pub struct Ball {
     pub height: f32,
     pub collider: Vector3, 
     pub speed: Vector2,
-    pub aceleration: f32,
+    pub aceleration: Vector2,
     pub last_touched_player: Option<Player>,
 }
 
@@ -25,6 +25,8 @@ impl Point for Ball {
 impl MovablePoint for Ball {
     fn x_ref(&mut self) -> &mut f32 { &mut self.rect.x }
     fn y_ref(&mut self) -> &mut f32 { &mut self.rect.y }
+    fn speed_ref(&mut self) -> &mut Vector2 { &mut self.speed }
+    fn aceleration_ref(&mut self) -> &mut Vector2 { &mut self.aceleration }
 }
 
 
@@ -37,7 +39,7 @@ impl Ball {
             height: height.as_f32(),
             collider: rvec3(0, 0, 0),
             speed: rvec2(0, 0),
-            aceleration: 0.0,
+            aceleration: rvec2(0, 0),
             last_touched_player: None,
         }
     }
