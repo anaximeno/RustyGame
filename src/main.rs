@@ -29,6 +29,7 @@ fn run_test_window(rl: &mut RaylibHandle, th: &RaylibThread) {
     let net = Net::from(Color::RAYWHITE, 4, 100, w / 2.0, h - 100.0);
 
     player1.move_to(0, h - player1.height);
+    player1.set_speed_to(1.5, 1.5);
     player2.move_to(w - player2.width, h - player2.height);
     ball.move_to(w / 2.0, h / 2.0);
     ball.walk(50, 0);
@@ -50,25 +51,25 @@ fn run_test_window(rl: &mut RaylibHandle, th: &RaylibThread) {
 
 fn handle_keyboard_input(rl: &RaylibHandle, player: &mut Player, camera: &mut GameCamera) {
     use raylib::consts::KeyboardKey::*;
-    const SPEED: f32 = 2.0;
+    let (sx, sy) = (player.speed.x, player.speed.y);
     
     if rl.is_key_down(KEY_LEFT) {
-        player.walk(-SPEED, 0);
-        camera.increase_offset_by(SPEED / 2.0, 0);
+        player.walk(-sx, 0);
+        camera.increase_offset_by(sx / 2.0, 0);
     }
 
     if rl.is_key_down(KEY_RIGHT) {
-        player.walk(SPEED, 0);
-        camera.increase_offset_by(-SPEED / 2.0, 0);
+        player.walk(sx, 0);
+        camera.increase_offset_by(-sx / 2.0, 0);
     }
 
     if rl.is_key_down(KEY_UP) {
-        player.walk(0, -SPEED);
-        camera.increase_offset_by(0, SPEED / 2.0);
+        player.walk(0, -sy);
+        camera.increase_offset_by(0, sy / 2.0);
     }
 
     if rl.is_key_down(KEY_DOWN) {
-        player.walk(0, SPEED);
-        camera.increase_offset_by(0, -SPEED / 2.0);
+        player.walk(0, sy);
+        camera.increase_offset_by(0, -sy / 2.0);
     }
 }
