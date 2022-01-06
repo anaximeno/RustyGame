@@ -2,6 +2,7 @@ mod point;
 mod player;
 mod ball;
 mod components;
+use camera;
 
 use components::*;
 use raylib::prelude::*;
