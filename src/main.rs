@@ -51,16 +51,24 @@ fn run_test_window(rl: &mut RaylibHandle, th: &RaylibThread) {
 fn handle_keyboard_input(rl: &RaylibHandle, player: &mut Player, camera: &mut GameCamera) {
     use raylib::consts::KeyboardKey::*;
     const SPEED: f32 = 2.0;
-    const CAM_OFF_SPEED: f32 = SPEED / 2.0;
-    // TODO: check/improve camera traits
+    
     if rl.is_key_down(KEY_LEFT) {
         player.walk(-SPEED, 0);
-        let new_offset = camera.cam.offset.x+CAM_OFF_SPEED;
-        camera.change_offset_to(new_offset, 0);
+        camera.increase_offset_by(SPEED / 2.0, 0);
     }
+
     if rl.is_key_down(KEY_RIGHT) {
         player.walk(SPEED, 0);
-        let new_offset = camera.cam.offset.x-CAM_OFF_SPEED;
-        camera.change_offset_to(new_offset, 0);
+        camera.increase_offset_by(-SPEED / 2.0, 0);
+    }
+
+    if rl.is_key_down(KEY_UP) {
+        player.walk(0, -SPEED);
+        camera.increase_offset_by(0, SPEED / 2.0);
+    }
+
+    if rl.is_key_down(KEY_DOWN) {
+        player.walk(0, SPEED);
+        camera.increase_offset_by(0, -SPEED / 2.0);
     }
 }
