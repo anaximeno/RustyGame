@@ -34,16 +34,9 @@ impl MovablePoint for Player {
 
 
 impl Player {
-    pub fn from<T1: AsF32, T2: AsF32>(
-        color: Color,
-        side: Side,
-        width: T1,
-        height: T1,
-        x: T2,
-        y: T2
-    ) -> Self {
+    pub fn from<T1: AsF32, T2: AsF32>(color: Color, side: Side, width: T1, height: T2) -> Self {
         Player {
-            rect: rrect(x, y, width, height),
+            rect: rrect(0, 0, width, height),
             color: color,
             side: side,
             width: width.as_f32(),

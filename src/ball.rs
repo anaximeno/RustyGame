@@ -29,15 +29,9 @@ impl MovablePoint for Ball {
 
 
 impl Ball {
-    pub fn from<T1: AsF32, U2: AsF32>(
-        color: Color,
-        width: T1,
-        height: T1,
-        x: U2,
-        y: U2
-    ) -> Self {
+    pub fn from<T1: AsF32, T2: AsF32>(color: Color, width: T1, height: T2) -> Self {
         Ball {
-            rect: rrect(x, y, width, height),
+            rect: rrect(0, 0, width, height),
             color: color,
             width: width.as_f32(),
             height: height.as_f32(),

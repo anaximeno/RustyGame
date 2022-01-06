@@ -9,7 +9,7 @@ use components::*;
 use raylib::prelude::*;
 
 const WINDOW_WIDTH: i32 = 720;
-const WINDOW_HEIGHT: i32 = 640;
+const WINDOW_HEIGHT: i32 = 480;
 
 
 fn main() {
@@ -21,15 +21,18 @@ fn main() {
 
 
 fn run_test_window(rl: &mut RaylibHandle, th: &RaylibThread) {
-    let (w, h) = (WINDOW_WIDTH, WINDOW_HEIGHT);
-    let player1 = Player::from(Color::BLUE, Side::LEFT, 32, 60, 0, h - 42);
-    let player2 = Player::from(Color::RED, Side::RIGHT, 32, 60, w - 32, h - 42);
-    let mut ball = Ball::from(Color::GOLD, 15, 15, w / 2, h / 2);
-    let net = Net::from(Color::RAYWHITE, 4, 100, w / 2, h - 100);
-    let camera = GameCamera::from(rvec2(0, 0), rvec2(0, 0));
+    let (w, h) = (WINDOW_WIDTH as f32, WINDOW_HEIGHT as f32);
+    let mut player1 = Player::from(Color::BLUE, Side::LEFT, 32, 60);
+    let mut player2 = Player::from(Color::RED, Side::RIGHT, 32, 60);
 
-    ball.move_to_point(&net);
-    
+    let mut ball = Ball::from(Color::GOLD, 15, 15);
+    let camera = GameCamera::from(rvec2(0, 0), rvec2(0, 0));
+    let net = Net::from(Color::RAYWHITE, 4, 100, w / 2.0, h - 100.0);
+
+    player1.move_to(0, h - player1.height);
+    player2.move_to(w - player2.width, h - player2.height);
+    ball.move_to(w / 2.0, h / 2.0);
+
     while !rl.window_should_close() {
         let mut dw = rl.begin_drawing(&th);
         dw.clear_background(Color::DARKGRAY);
