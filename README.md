@@ -1,5 +1,5 @@
-# Rusty Block Volley
+# Rusty Block Volley (Ongoing project)
 
-> **Version 0.1.5** - Basic version only with some elements on the window screen.
+<img src="./images/rbv.gif" alt="Rust Block Volley Gif">
 
-*NOTE: Ongoing project*
+***Version 0.1.5** - Basic version only with some elements on the window screen and some movements*
