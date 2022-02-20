@@ -97,9 +97,10 @@ impl GameWindow {
     }
 
     pub fn run_test_window(&mut self, background_color: Color) {
+        self.rl.set_target_fps(self.fps);
         let (width, height) = (self.width.as_f32(), self.height.as_f32());
 
-        self.components.players.set_speed_to(0.5, 0.5);
+        self.components.players.set_speed_to(2, 2);
 
         self.components.players.0.move_to(
             0_i32, height - self.components.players.0.height
