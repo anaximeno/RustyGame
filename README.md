@@ -1,4 +1,4 @@
-# Rusty Block Volley (Ongoing project)
+# Rusty Game (Ongoing project)
 
 <img src="./images/rbv.gif" alt="Rust Block Volley Gif">
 
