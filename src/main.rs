@@ -14,7 +14,7 @@ const WINDOW_HEIGHT: i32 = 480;
 
 fn main() {
     let (mut rl, th) = raylib::init().size(WINDOW_WIDTH, WINDOW_HEIGHT)
-                        .title("Rusty Block Volley").build();
+                        .title("Rusty Game").build();
     rl.set_target_fps(60);
     run_test_window(&mut rl, &th);
 }
